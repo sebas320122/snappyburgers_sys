@@ -1,0 +1,124 @@
+/*Seccion contenido*/
+
+/*Cuadricula para recuadros*/
+.cuadricula{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.2rem;
+    grid-auto-columns: minmax(auto);
+  }
+  
+  /*Base recuadro*/
+  .box .box-header{
+    padding: .5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .box .box-header p{
+    /*nota: titulo de recuadro*/
+   text-align: center;
+   font-size: 25px;
+   font-weight: bold;
+  }
+  
+  .box{
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: justify;
+    min-width: 15rem;
+    grid-column: 2 span;/*nota: acomodo de recuadros general*/
+  }
+  .box .box-content{
+    padding: 1.2rem;
+    /*nota: eliminar separación de arriba del contenido del recuadro*/
+    padding-top: 0;
+  }
+  
+  /*recuadro ticket*/
+  .box table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .box table th, td {
+    padding: 4.8px;
+    text-align: left;
+    /*nota: bordes de tabla*/
+    border: none;
+  }
+  
+  .box table th {
+    /*nota: cabecera de tabla*/
+    background-color: #ffffff;
+    position: sticky;
+    top: 0; 
+    border-bottom: none;
+  }
+  
+  
+  .box .campo-tabla{
+    overflow-y:scroll;
+    padding: 1.4rem 0;
+    padding-top: 0;
+    height: 55vh;/*nota: altura de campo para tabla*/
+    margin: 0 auto;
+  }
+  
+  .box .texto-mesa{
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  
+  .entrada-mesa{
+    text-align: center;
+    width: 100px;
+    font-size: 15px;
+    border: 1px solid  #F3F3F3;
+    background-color: #F3F3F3;
+    border-radius: .4rem;
+    padding: .6rem .2rem;
+    margin-bottom: 20px;
+  }
+  
+  
+  .box #order-table th:nth-child(1),
+  .box #order-table td:nth-child(1) {
+    /*nota: columna 1*/
+    width: 20%;
+  }
+  .box #order-table th:nth-child(3),
+  .box #order-table td:nth-child(3) {
+    /*nota: columna 3*/
+    text-align: center;
+  }
+  
+  .box-content .texto-total{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .box .btn-preparado{
+    margin-top:20px;
+    color: #ffffff;
+    background-color:#FF914D;   
+    border: 1px solid #FF914D;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 10px;
+    width: 100%;
+  }
+  
+  
+  /*Vista en dispositivos moviles*/
+  @media only screen and (max-width: 900px) {
+    /*Acomodo de recuadros*/
+    .box{
+      grid-column: 6 span;
+    }
+  }

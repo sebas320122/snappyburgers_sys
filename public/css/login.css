@@ -1,0 +1,109 @@
+/*General*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background-color: #D9D9D9;
+    font-family: "Open Sans", sans-serif;
+}
+
+
+
+/*Logo*/
+ .contenedor-logo{
+  /*nota: contenedor de titulo*/
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .marco-logo {
+      display:flex;
+      align-items: center;   
+  }
+  .logo{
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 100%;
+  }
+  
+  .contenedor-logo .logo-titulo{
+    font-size: 30px;
+    font-family: "Concert One", sans-serif;
+    width: 75%;
+    text-align: center;
+  }
+
+/*Base recuadro*/
+.box .box-header{
+    padding: 25px;
+    justify-content: center;
+    align-items: center
+  }
+  
+  .box .box-header p{
+   text-align: center;
+   font-size: 1.2rem;
+   font-weight: 600;
+  }
+  
+  .box{
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: justify;
+    width: 35%;
+    margin: 80px auto;
+  }
+
+  .box .box-content{
+    padding:18px;
+  }
+
+form{
+    text-align: center;
+}
+
+.box .box-content .dato{
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    background-color:#F3F3F3;
+    border: 1px solid #F3F3F3;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.box .box-content .dato.segundo{
+    margin: 25px 0;
+
+}
+
+.box .box-content .boton{
+    /*nota: boton para ingresar*/
+    font-size: 17px;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 7px;
+    margin-top:10px;
+    background-color: #FF914D;
+    color: #ffffff;
+    border: 1px solid #FF914D;
+    padding: 9px ;
+    cursor: pointer;
+}
+
+/*En dispositivos moviles*/
+@media only screen and (max-width: 900px) {
+  .box{
+    width: 70%;
+  }
+  .contenedor-logo .logo-titulo{
+    margin-left: 2%;
+  }
+}

@@ -1,0 +1,187 @@
+/*General*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+  }
+  body {
+      /*nota: color de fondo del contenido*/
+      background-color: #D9D9D9; 
+  }
+  
+  /*Seccion menu*/
+  .menu{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: #303138;
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+  }
+  .menu.open{
+    width: 250px;
+  }
+  .menu .menu-logo{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .marco-logo {
+      display:flex;
+      align-items: center;
+      margin:1rem 0;
+      margin-left:0.5rem; /*nota: ajusta foto*/
+  }
+  .logo{
+      width:40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 100%;
+      opacity: 0;
+      transition: all 0.5s ease;
+  }
+  
+  .menu.open .logo{
+      opacity: 1;
+  }
+  
+  
+  .menu .menu-logo .logo-titulo{
+    color: #fff;
+    font-size: 24px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    font-family: "Concert One", sans-serif;
+    width: 140px;
+    padding-left: 15px;
+  }
+  .menu.open .menu-logo .icon,
+  .menu.open .menu-logo .logo-titulo{
+    opacity: 1;
+  }
+  .menu .menu-logo #btn{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    transition: all 0.4s ease;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .menu.open .menu-logo #btn{
+    text-align: right;
+  }
+  .menu i{
+    color: #fff;
+    height: 60px;
+    min-width: 50px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+  }
+  .menu .menu-opciones{
+    margin-top: 20px;
+    height: 100%;
+  }
+  .menu li{
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+  }
+  .menu li .tooltip{
+    position: absolute;
+    top: -20px;
+    left: calc(100% + 15px);
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0s;
+  }
+  .menu li:hover .tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .menu.open li .tooltip{
+    display: none;
+  }
+  
+  .menu li a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: #303138;
+  }
+  .menu li a:hover{
+    background: #FFF;
+  }
+  .menu li a .opcion_texto{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+  }
+  .menu.open li a .opcion_texto{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .menu li a:hover .opcion_texto,
+  .menu li a:hover i{
+    transition: all 0.5s ease;
+    color: #11101D;
+  }
+  .menu li i{
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    border-radius: 12px;
+  }
+  
+  .menu li img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+  }
+  
+  .contenido{
+    position: relative;
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px); /*nota: mover contenido a la derecha del menu*/
+    transition: all 0.5s ease;
+    z-index: 2;
+    padding: 15px;/*nota: ajuste hacia dentro */
+  }
+  
+  
+  @media (max-width: 420px) {
+    .menu li .tooltip{
+      display: none;
+    }
+  }
