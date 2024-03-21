@@ -15,58 +15,25 @@
                 <thead>
                 <tr>
                     <th>Item</th>
+                    <th>Precio</th>
                     <th>Accion</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>refresco</td>
-                    <td><button class="btn-agregar" data-item="Refresco" data-precio="90">+</button></td>
+                    <td>50</td>
+                    <td><button class="btn-agregar" data-item="Refresco" data-precio="50">+</button></td>
                 </tr>
                 <tr>
                     <td>orden gde papas fritas</td>
+                    <td>90</td>
                     <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
                 </tr>
                 <tr>
-                    <td>orden gde papas fritas</td>
-                    <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
-                </tr>
-                <!--Agregados temporalmente-->
-                <tr>
-                    <td>refresco</td>
-                    <td><button class="btn-agregar" data-item="Refresco" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>orden gde papas fritas</td>
-                    <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>orden gde papas fritas</td>
-                    <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>refresco</td>
-                    <td><button class="btn-agregar" data-item="Refresco" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>orden gde papas fritas</td>
-                    <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>orden gde papas fritas</td>
-                    <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>refresco</td>
-                    <td><button class="btn-agregar" data-item="Refresco" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>orden gde papas fritas</td>
-                    <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
-                </tr>
-                <tr>
-                    <td>orden gde papas fritas</td>
-                    <td><button class="btn-agregar" data-item="Orden gde papas fritas" data-precio="90">+</button></td>
+                    <td>Pizza</td>
+                    <td>200</td>
+                    <td><button class="btn-agregar" data-item="Pizza" data-precio="200">+</button></td>
                 </tr>
                 </tbody>
             </table>   
@@ -80,22 +47,25 @@
         </div>
         <div class="box-content">
             <!--Formulario de orden-->
-            <form action="#" id="order-form">
-            <input type="number" min="1" placeholder="mesa" class="entrada-mesa" placeholder="Buscar">
-            <div class="campo-tabla">
-                <table id="order-table">
-                    <thead>
-                        <tr>
-                            <th>Cantidad</th>
-                            <th>Item</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>   
-            </div>
-            <input type="submit" value="Siguiente" class="btn-siguiente">
+            <form id="order-form" action="{{route('store.cobros')}}" method="POST">
+                @csrf
+                <input type="number" min="1" placeholder="mesa" class="entrada-mesa" name="mesa">
+                <div class="campo-tabla">
+                    <table id="order-table">
+                        <thead>
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Item</th>
+                                <th>Precio</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="items-list">
+                            <!--Aqui se agregan los items-->
+                        </tbody>
+                    </table>   
+                </div>
+                <input type="submit" value="Siguiente" class="btn-siguiente">
             </form>
             <!--Final del formulario-->
         </div>

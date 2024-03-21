@@ -15,5 +15,8 @@ Route::get('/prueba', function () {
 
 //Rutas para vistas {Cobrar, Ordenes}
 Route::controller(CobroController::class)->group(function () {
-    Route::get('cobrar', 'showCobrar')->name('vista.cobrar');
+    Route::get('cobrar', 'showCobrar')->name('show.cobrar');
+    Route::get('ticket/{order_id}', 'showTicket')->name('show.ticket');
+    Route::post('cobrar', 'storeCobros')->name('store.cobros');
+    Route::post('ticket/{order_id}', 'updateOrden')->name('update.orden');
 });

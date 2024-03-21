@@ -125,15 +125,17 @@ table .btn-agregar{
   padding: .6rem .2rem;
   margin-bottom: 20px;
 }
-
-#order-table .entrada-cantidad{
-  text-align: center;
-  width: 100px;
- 
+#order-table .entrada-dato{
   border: 1px solid  #F3F3F3;
   background-color: #F3F3F3;
-  border-radius: .4rem;
-  padding: .6rem .2rem;
+  border-radius: 6px;
+  padding: 7px 2px;
+  font-size: 16px;
+}
+
+#order-table .entrada-dato.cantidad{
+  text-align: center;
+  width: 100px;
 }
 
 .box #order-table th:nth-child(1),

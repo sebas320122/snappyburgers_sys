@@ -1,5 +1,5 @@
 @extends('base.menu')
-@section('title', 'Cobrar')
+@section('title', 'Ticket')
 
 @section('content')
     <div class="cuadricula">
@@ -10,48 +10,37 @@
             </div>
             <div class="box-content">
                 <!--Formulario de orden-->
-                <form action="#" id="order-form">
-                <p class="texto-mesa">Mesa 5</p>
-                <select name="estado_orden" class="selector-estado">
-                    <option value="volvo">Confirmar</option>
-                    <option value="saab">Cancelar</option>
-                    <option value="saab">Editar</option>
-                </select>
-                <div class="campo-tabla">
-                    <table id="order-table">
-                        <thead>
-                        <tr>
-                            <th>Cantidad</th>
-                            <th>Item</th>
-                            <th>Precio</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                        <td>1</td>
-                        <td>Pizza</td>
-                        <td>$50 </td>
-                        </tr>
-                        <tr>
-                        <td>5</td>
-                        <td>Refresco</td>
-                        <td>$60 </td>
-                        </tr>
-                        <tr>
-                        <td>5</td>
-                        <td>orden gde papas fritas</td>
-                        <td>$100</td>
-                        </tr>
-                        <tr>
-                        <td>2</td>
-                        <td>Hamburguesa</td>
-                        <td>$200</td>
-                        </tr>
-                        </tbody>
-                    </table>   
-                </div>
-                <p class="texto-total">Total: $410</p>
-                <input type="submit" value="Listo" class="btn-listo">
+                <form action="{{ route('update.orden', ['order_id' => $order_id]) }}" method="POST" id="order-form">
+                    @csrf
+                    <p class="texto-mesa">Mesa {{ $orden[0]->Mesa }} | Orden {{$order_id}}</p>
+                    <!--Cambiar estatus de orden-->
+                    <select name="estado_orden" class="selector-estado">
+                        <option value="Confirmar">Confirmar</option>
+                        <option value="Cancelar">Cancelar</option>
+                    </select>
+                    <div class="campo-tabla">
+                        <table id="order-table">
+                            <thead>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <th>Item</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--Items seleccionados en vista anterior-->
+                                @foreach($orden as $item)
+                                    <tr>
+                                        <td>{{ $item->Cantidad }}</td>
+                                        <td>{{ $item->Item }}</td>
+                                        <td>{{ $item->Precio }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>   
+                    </div>
+                    <p class="texto-total">Total: ${{$total}}</p>
+                    <input type="submit" value="Listo" class="btn-listo">
                 </form>
                 <!--Final del formulario-->
             </div>

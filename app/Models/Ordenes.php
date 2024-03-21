@@ -5,26 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cobros extends Model
+class Ordenes extends Model
 {
     //nombre de tabla
-    protected $table = 'cobros';
+    protected $table = 'ordenes';
 
     use HasFactory;
 
     //Campos que se pueden llenar masivamente
     protected $fillable = 
     [
-    'Orden_id',
-    'Item',
-    'Cantidad',
-    'Precio',
+    'Total',
     'Mesa',
     'Estado'
     ];
 
-    public function orden()
+    public function cobros()
     {
-        return $this->belongsTo(Ordenes::class);
+        return $this->hasMany(Cobros::class, 'Orden_id');
     }
 }

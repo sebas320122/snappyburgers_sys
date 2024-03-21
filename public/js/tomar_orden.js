@@ -1,43 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const menuTable = document.getElementById('menu-table');
-    const orderTable = document.getElementById('order-table');
-    const orderForm = document.getElementById('order-form');
+  //Detectar elementos html
+  const menuTable = document.getElementById('menu-table');
+  const orderTable = document.getElementById('order-table');
+  const orderForm = document.getElementById('order-form');
 
-    menuTable.addEventListener('click', function (event) {
-      if (event.target.classList.contains('btn-agregar')) {
-        const item = event.target.getAttribute('data-item');
-        const precio = parseFloat(event.target.getAttribute('data-precio'));
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><input type="number" min="1" value="1" class="entrada-cantidad" required></td>
-          <td>${item}</td>
-          <td><button class="btn-delete">-</button></td>
-        `;
-        orderTable.querySelector('tbody').appendChild(row);
-      }
-    });
-
-    orderTable.addEventListener('click', function (event) {
-      if (event.target.classList.contains('btn-delete')) {
-        event.target.closest('tr').remove();
-      }
-    });
-
-    orderForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-      const mesa = orderForm.querySelector('.entrada-mesa').value;
-      const items = orderTable.querySelectorAll('tbody tr');
-      const orderData = {
-        mesa: mesa,
-        items: []
-      };
-      items.forEach(function (item) {
-        const cantidad = parseInt(item.querySelector('.cantidad').value);
-        const nombre = item.querySelector('td:nth-child(2)').textContent;
-        orderData.items.push({ nombre: nombre, cantidad: cantidad });
-      });
-      console.log(orderData); // Aquí puedes enviar los datos a tu backend o realizar alguna otra acción
-      orderForm.reset(); // Limpiar el formulario después de enviar la orden
-      orderTable.querySelector('tbody').innerHTML = ''; // Limpiar la tabla de orden
-    });
+  //Agregar funcion a boton add
+  menuTable.addEventListener('click', function (event) {
+    if (event.target.classList.contains('btn-agregar')) {
+      const item = event.target.getAttribute('data-item');
+      const precio = parseFloat(event.target.getAttribute('data-precio'));
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><input type="number" min="1" value="1" class="entrada-dato cantidad" name="cantidad[]" required></td>
+        <td><input type="text" value="${item}" class="entrada-dato" name="item[]" required></td>
+        <td><input type="number" min="1" value="${precio}" class="entrada-dato" name="precio[]" required></td>
+        <td><button class="btn-delete">-</button></td>
+      `;
+      //agregar item a box-2
+      orderTable.querySelector('tbody').appendChild(row);
+    }
   });
+
+  //Agregar funcion al boton delete
+  orderTable.addEventListener('click', function (event) {
+    if (event.target.classList.contains('btn-delete')) {
+      //eliminar item de box-2
+      event.target.closest('tr').remove();
+    }
+  });
+  
+}); 
