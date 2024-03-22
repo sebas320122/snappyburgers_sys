@@ -127,6 +127,16 @@
     padding: 5px 10px;
     width: 100%;
   }
+
+  /*recuadro de alerta*/
+.mensaje-alerta{
+  grid-column: 6 span;
+  background-color: #A6A6A6;
+  color: #ffffff;
+  border-radius:6px;
+  padding: 8px;
+  /*nota: ocultar alerta*/
+  }
   
   /*En dispositivos moviles*/
   @media only screen and (max-width: 900px) {

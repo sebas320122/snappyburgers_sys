@@ -44,6 +44,17 @@
   grid-column: 4 span;
 }
 
+/*recuadro de alerta*/
+.mensaje-alerta{
+  grid-column: 6 span;
+  background-color: #A6A6A6;
+  color: #ffffff;
+  border-radius:6px;
+  padding: 8px;
+  /*nota: ocultar alerta*/
+  
+}
+
 /*Tabla Items*/
 .filtro-items{
   width:100%;

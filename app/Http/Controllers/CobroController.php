@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cobros;
 use App\Models\Ordenes;
+use Illuminate\Support\Facades\DB;
+
 
 class CobroController extends Controller
 {
     // Mostrar vista cobrar
     public function showCobrar(){
-        return view('cobrar');
+
+        // Obtener items del menu
+        $itemsMenu = DB::table('items')->get();
+
+        return view('cobrar', 
+        ['itemsMenu' => $itemsMenu]);
     }
 
     // Registrar cobro en vista Cobrar
@@ -71,8 +78,9 @@ class CobroController extends Controller
         ]);
     }
 
+    // Actualizar orden
     public function updateOrden(Request $request, $order_id){
-        
+
         // Obtener el estado seleccionado
         $nuevoEstado = $request->estado_orden;
 
@@ -80,6 +88,32 @@ class CobroController extends Controller
         Cobros::where('Orden_id', $order_id)->update(['Estado' => $nuevoEstado]);
         Ordenes::where('id', $order_id)->update(['Estado' => $nuevoEstado]);
 
-        return redirect()->route('show.cobrar')->with('success', 'Estado de la orden actualizado');
+        return redirect()->route('show.cobrar');
     }
+
+    // Mostrar vista Ordenes
+    public function showOrdenes(){
+
+        // Obtener todas las órdenes con estado "Confirmar"
+        $ordenes = Ordenes::where('Estado', 'Confirmar')->get();
+
+        // Pasar las órdenes a la vista
+        return view('ordenes', ['ordenes' => $ordenes]);
+    }
+
+    // Actualizar oden 
+    public function updateOrdenconf(Request $request){
+
+        $order_id = $request->input('order_id');
+
+        // Obtener el estado seleccionado
+        $nuevoEstado = "Preparado";
+
+        // Actualizar el estado en la tabla de cobros y ordenes
+        Cobros::where('Orden_id', $order_id )->update(['Estado' => $nuevoEstado]);
+        Ordenes::where('id', $order_id)->update(['Estado' => $nuevoEstado]);
+
+        return redirect()->back();
+    }
+
 }

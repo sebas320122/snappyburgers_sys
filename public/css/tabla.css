@@ -147,9 +147,8 @@
     color: #ffffff;
     border-radius:6px;
     padding: 8px;
-    margin-top: 10px;
     /*nota: ocultar alerta*/
-    display: none;
+    grid-column: 6 span;
   }
   
   /*Vista en dispositivos moviles*/

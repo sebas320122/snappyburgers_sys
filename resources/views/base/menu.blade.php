@@ -36,7 +36,7 @@
          <span class="tooltip">Cobrar</span>
       </li>
       <li>
-        <a href="#">
+        <a href="{{url('ordenes')}}">
           <i class='bx bxs-notepad'></i>
           <span class="opcion_texto">Ordenes</span>
         </a>

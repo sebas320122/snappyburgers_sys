@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="cuadricula">
-        <!--Caja 2-->
+        <!--Caja 1-->
         <div class="box" id="box-1">
             <div class="box-header">
                 <p>Ticket</p>
@@ -45,6 +45,19 @@
                 <!--Final del formulario-->
             </div>
         </div>
+        <!--mensaje de alerta-->
+            @if ($message = Session::get('error'))
+                <div class="mensaje-alerta">
+                    <p>{{$message}}</p>
+                </div>
+            @endif
+            @if (count($errors) > 0)
+                <div class="mensaje-alerta">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
     </div>
     <!--Agregar estilo-->
     @push('styles')

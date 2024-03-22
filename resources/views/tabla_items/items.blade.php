@@ -71,10 +71,11 @@
                         </tbody>
                     </table>   
                 </div>
-                <div class="mensaje-alerta">
-                    <p>Aqui se mostraran confirmaciones o errores al momento de ejecutar una operacion en la tabla</p>
-                </div>
+                
             </div>
+        </div>
+        <div class="mensaje-alerta">
+            <p>Aqui se mostraran confirmaciones o errores al momento de ejecutar una operacion en la tabla</p>
         </div>
     </div>
     
