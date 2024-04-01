@@ -1,7 +1,7 @@
 /*Seccion contenido*/
 
-/*Cuadricula para recuadros*/
-.cuadricula{
+/*grid para recuadros*/
+.grid{
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 1.2rem;
@@ -49,30 +49,20 @@
 }
 
 
-.opciones-linea .btn-regresar{
+.opciones-linea .btn{
   color: #ffffff;
   font-size: 16px;
+  text-decoration: none;/*nota: quitar subrayado de enlace*/
+  border-radius: 6px;
+  padding: 5px 10px;
+  text-align: center;
+  grid-column: 1 span;
+}
+
+.opciones-linea .btn.btn-regresar{
   border: 1px solid  #303138;
   background-color: #303138;
-  text-decoration: none;/*nota: quitar subrayado de enlace*/
-  border-radius: 6px;
-  padding: 5px 10px;
-  text-align: center;
-  grid-column: 1 span;
 }
-
-.opciones-linea .btn-agregar{
-  color: #ffffff;
-  font-size: 16px;
-  border: 1px solid  #FF914D;
-  background-color: #FF914D;
-  text-decoration: none;/*nota: quitar subrayado de enlace*/
-  border-radius: 6px;
-  padding: 5px 10px;
-  text-align: center;
-  grid-column: 1 span;
-}
-
 
 .box.box-alert .box-content{
   padding: 10px;
@@ -144,6 +134,10 @@
   padding-bottom: 0;
 }
 
+.opciones-linea .btn.btn-agregar{
+  border: 1px solid  #FF914D;
+  background-color: #FF914D;
+}
 
 /*recuadro de alerta*/
 .mensaje-alerta{

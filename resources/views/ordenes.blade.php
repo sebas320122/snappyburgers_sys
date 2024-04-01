@@ -2,7 +2,7 @@
 @section('title', 'Ordenes')
 
 @section('content')
-    <div class="cuadricula">
+    <div class="grid">
         @foreach ($ordenes as $orden)
             <!--Orden-->
             <div class="box">

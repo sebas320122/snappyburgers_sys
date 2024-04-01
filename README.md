@@ -9,5 +9,7 @@
 - Realizar despliegue de las ordenes confirmadas en vista ordenes
 ### 21/03 
 - Habilitar funcion de filltro para tabla
-### 21/03  - en curso
-- Realizar tabla de vista inventario
+### 21/03  - 31/03
+- Se realizo las funciones de la vista disponibilidad
+### 31/03 - en curso
+- Se haran las funciones de la vista proveedores

@@ -2,16 +2,16 @@
 @section('title', 'Cobrar')
 
 @section('content')
-    <div class="cuadricula">
+    <div class="grid">
         <!--Caja 1-->
         <div class="box" id="box-1">
             <div class="box-header">
                 <p>Items</p>
             </div>
             <div class="box-content">
-                <input type="text" class="filtro-items" placeholder="Buscar" id="filtro-items">
+                <input type="text" class="filtro-items" placeholder="Buscar" id="filtro">
                 <div class="campo-tabla">
-                <table id="menu-table">
+                <table id="filtro-table">
                     <thead>
                     <tr>
                         <th>Item</th>

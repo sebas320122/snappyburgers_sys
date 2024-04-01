@@ -1,7 +1,7 @@
 /*Seccion contenido*/
 
-/*Cuadricula para recuadros*/
-.cuadricula{
+/*grid para recuadros*/
+.grid{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 1.2rem;
@@ -49,46 +49,26 @@
   }
   
   
-  .opciones-linea .btn-regresar{
+  .opciones-linea .btn{
     color: #ffffff;
     font-size: 16px;
-    border: 1px solid  #303138;
-    background-color: #303138;
     text-decoration: none;/*nota: quitar subrayado de enlace*/
     border-radius: 6px;
     padding: 5px 10px;
     text-align: center;
     grid-column: 1 span;
   }
-  
-  .opciones-linea .btn-eliminar{
-    color: #ffffff;
+
+
+  .opciones-linea .btn.btn-regresar{
     font-size: 16px;
-    border: 1px solid  #D04848;
-    background-color: #D04848;
-    border-radius: 6px;
-    padding: 5px 10px;
-    text-align: center;
-    grid-column: 1 span;
+    border: 1px solid  #303138;
+    background-color: #303138;
   }
-  
-  .opciones-linea .btn-editar{
-    color: #ffffff;
-    font-size: 16px;
-    border: 1px solid  #6DA4AA;
-    background-color: #6DA4AA;
-    border-radius: 6px;
-    padding: 5px 10px;
-    text-align: center;
-    grid-column: 1 span;
-  }
-  
-  
   
   .box.box-alert .box-content{
     padding: 10px;
   }
-  
   
   /*recuadro tabla*/
   .box table {
@@ -155,6 +135,15 @@
     padding-bottom: 0;
   }
   
+  .opciones-linea .btn.btn-eliminar{
+    border: 1px solid  #D04848;
+    background-color: #D04848;
+  }
+  
+  .opciones-linea .btn.btn-editar{
+    border: 1px solid  #6DA4AA;
+    background-color: #6DA4AA;
+  }
   
   /*recuadro de alerta*/
   .mensaje-alerta{

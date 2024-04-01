@@ -1,7 +1,7 @@
 /*Seccion contenido*/
 
-/*Cuadricula para recuadros*/
-.cuadricula{
+/*grid para recuadros*/
+.grid{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 1.2rem;

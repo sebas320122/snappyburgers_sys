@@ -2,7 +2,7 @@
 @section('title', 'Disponibilidad')
 
 @section('content')
-    <div class="cuadricula">
+    <div class="grid">
         <!--Recuadro con tabla-->
         <div class="box">
             <div class="box-header">
@@ -11,91 +11,61 @@
             <div class="box-content">
                 <!--Linea de botones-->
                 <div class="opciones-linea">
-                    <a href="#" class="btn-configuracion">Configuracion</a>
-                    <input type="text" class="busqueda-productos" placeholder="Buscar">
+                    <a href="{{url('disponibilidad/agregar')}}" class="btn-agregar">Agregar</a>
+                    <input type="text" class="busqueda-productos" placeholder="Buscar" id="filtro">
                 </div>
                 <div class="campo-tabla">
-                    <table id="order-table">
+                    <table id="filtro-table">
                         <thead>
                         <tr>
                             <th>Producto</th>
-                            <th>Existencia fisica</th>
-                            <th>Existencia calculada</th>
-                            <th>Porcentaje E.F</th>
-                            <th>Porcentaje E.C</th>
+                            <th>Existencia</th>
+                            <th>Capacidad</th>
+                            <th>Porcentaje</th>
                             <th>Accion</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                        <td>Panes chicos</td>
-                        <td>50</td>
-                        <td>50</td>
-                        <td>100%</td>
-                        <td>100%</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>Panes grandes</td>
-                        <td>50</td>
-                        <td>50</td>
-                        <td>100%</td>
-                        <td>100%</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>Lechuga</td>
-                        <td>20</td>
-                        <td>21.7</td>
-                        <td>30%</td>
-                        <td>31.5%</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>Queso americano</td>
-                        <td>64</td>
-                        <td>65</td>
-                        <td>80%</td>
-                        <td>81%</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
+                            @foreach ($productos as $producto)
+                                <tr>
+                                    <td>{{$producto->Producto}}</td>
+                                    <td>{{$producto->Existencia}}</td>
+                                    <td>{{$producto->Capacidad}}</td>
+                                    <td>%{{$producto->Porcentaje}}</td>
+                                    <td>
+                                        <a href="{{route('show.info_producto',$producto->id)}}">
+                                            <button class="btn-editar">
+                                                Ver
+                                            </button>
+                                        </a>
+                                    </td> 
+                                </tr>
+                            @endforeach   
                         </tbody>
                     </table>   
                 </div>
-                <div class="mensaje-alerta">
-                    <p>Aqui se mostraran confirmaciones o errores al momento de ejecutar una operacion en la tabla</p>
-                </div>
             </div>
         </div>
+        <!--Mensaje de alerta-->
+                @if ($message = Session::get('success'))
+                    <div class="mensaje-alerta">
+                        <p>{{$message}}</p>
+                    </div>
+                @endif
+                @if ($message = Session::get('error'))
+                    <div class="mensaje-alerta">
+                        <p>{{$message}}</p>
+                    </div>
+                @endif
     </div>
     
     <!--Agregar estilo-->
     @push('styles')
         <link rel="stylesheet" href="/css/tabla.css">
+    @endpush
+    <!--Agregar script-->
+    @push('scripts')
+        <script src="/js/filtro.js"></script>
     @endpush
 
 @endsection

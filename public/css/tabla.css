@@ -1,7 +1,7 @@
 /*Seccion contenido*/
 
-/*Cuadricula para recuadros*/
-.cuadricula{
+/*grid para recuadros*/
+.grid{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 1.2rem;
@@ -48,7 +48,7 @@
     margin: 0 auto;
   }
   
-  .opciones-linea .btn-configuracion{
+  .opciones-linea .btn-agregar{
     color: #ffffff;
     font-size: 16px;
     border: 1px solid  #303138;
@@ -130,31 +130,20 @@
     border-radius: 6px;
     cursor: pointer;
   }
-  
-  
-  /*
-  .box #order-table th:nth-child(3),
-  .box #order-table td:nth-child(3) {
     
-  }
-  */
-  
-  
-  
   /*recuadro de alerta*/
   .mensaje-alerta{
     background-color: #A6A6A6;
     color: #ffffff;
     border-radius:6px;
     padding: 8px;
-    /*nota: ocultar alerta*/
     grid-column: 6 span;
   }
   
   /*Vista en dispositivos moviles*/
   @media only screen and (max-width: 900px) {
     /*opciones para tabla*/
-    .opciones-linea .btn-configuracion{
+    .opciones-linea .btn-agregar{
       grid-column: 6 span;
     }
     .opciones-linea .busqueda-productos{

@@ -2,7 +2,7 @@
 @section('title', 'Ticket')
 
 @section('content')
-    <div class="cuadricula">
+    <div class="grid">
         <!--Caja 1-->
         <div class="box" id="box-1">
             <div class="box-header">

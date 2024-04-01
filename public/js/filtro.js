@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var filtroItemsInput = document.getElementById('filtro-items');
-    var tablaMenu = document.getElementById('menu-table');
+    var filtroItemsInput = document.getElementById('filtro');
+    var tablaMenu = document.getElementById('filtro-table');
 
     filtroItemsInput.addEventListener('input', function () {
         var searchText = filtroItemsInput.value.toLowerCase();

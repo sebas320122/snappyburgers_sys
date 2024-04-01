@@ -1,7 +1,7 @@
 /*Seccion contenido*/
 
-/*Cuadricula para recuadros*/
-.cuadricula{
+/*grid para recuadros*/
+.grid{
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 1.2rem;
@@ -119,8 +119,8 @@ table .btn-agregar{
   cursor: pointer;
 }
 
-.box #menu-table th:nth-child(2),
-.box #menu-table td:nth-child(2) {
+.box #filtro-table th:nth-child(2),
+.box #filtro-table td:nth-child(2) {
   /*nota: columna 2*/
   text-align: center;
 }

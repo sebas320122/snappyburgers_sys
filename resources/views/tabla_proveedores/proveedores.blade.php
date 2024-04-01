@@ -2,7 +2,7 @@
 @section('title', 'Proveedores')
 
 @section('content')
-    <div class="cuadricula">
+    <div class="grid">
         <!--Recuadro con tabla-->
         <div class="box">
             <div class="box-header">
@@ -11,7 +11,7 @@
             <div class="box-content">
                 <!--Linea de botones-->
                 <div class="opciones-linea">
-                    <a href="#" class="btn-configuracion">Agregar</a>
+                    <a href="#" class="btn-agregar">Agregar</a>
                     <input type="text" class="busqueda-productos" placeholder="Buscar">
                 </div>
                 <div class="campo-tabla">

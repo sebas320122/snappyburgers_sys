@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   //Detectar elementos html
-  const menuTable = document.getElementById('menu-table');
+  const menuTable = document.getElementById('filtro-table');
   const orderTable = document.getElementById('order-table');
   const orderForm = document.getElementById('order-form');
 

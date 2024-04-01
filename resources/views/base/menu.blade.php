@@ -7,7 +7,7 @@
     <title>@yield('title')</title><!--espacio de titulo-->
     <link rel="stylesheet" href="/css/base/menu.css">
     @stack('styles')<!--agrupacion de estilos-->
-    <link rel="icon" type="image/x-icon" href="SnappyLogo.ico">
+    <link rel="icon" type="image/x-icon" href="{{asset('SnappyLogo.ico')}}">
     <!-- Iconos -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!-- Fonts -->
@@ -22,7 +22,7 @@
   <div class="menu">
     <div class="menu-logo">
         <div class="marco-logo">
-            <img src="SnappyLogo.png" alt="cat" class="logo">
+            <img src="{{asset('SnappyLogo.png')}}" alt="cat" class="logo">
         </div>
         <div class="logo-titulo">Snappy Burgers</div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -43,7 +43,7 @@
          <span class="tooltip">Ordenes</span>
       </li>
       <li>
-        <a href="#">
+        <a href="{{url('disponibilidad')}}">
           <i class='bx bxs-box'></i>
           <span class="opcion_texto">Disponibilidad</span>
         </a>

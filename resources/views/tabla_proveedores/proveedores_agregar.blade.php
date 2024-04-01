@@ -2,7 +2,7 @@
 @section('title', 'Agregar orden de proveedor')
 
 @section('content')
-    <div class="cuadricula">
+    <div class="grid">
         <!--Recuadro con tabla-->
         <div class="box">
             <div class="box-header">
