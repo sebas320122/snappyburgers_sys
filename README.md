@@ -11,5 +11,7 @@
 - Habilitar funcion de filltro para tabla
 ### 21/03  - 31/03
 - Se realizo las funciones de la vista disponibilidad
-### 31/03 - en curso
-- Se haran las funciones de la vista proveedores
+### 31/03 - 02/04
+- Se realizo las funciones de la vista proveedores
+### 02/04 - en curso
+- Se haran las funciones de la vista Items

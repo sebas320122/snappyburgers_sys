@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('Nombre');
             $table->smallInteger('Precio');
+            $table->string('Categoria');
+            $table->string('Productos');
             $table->timestamps();
         });
     }

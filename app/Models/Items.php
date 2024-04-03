@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     //nombre de tabla
-    protected $table = 'ordenes';
+    protected $table = 'items';
 
     use HasFactory;
 
@@ -16,6 +16,8 @@ class Items extends Model
     protected $fillable = 
     [
     'Nombre',
-    'Precio'
+    'Precio',
+    'Categoria',
+    'Productos'
     ];
 }

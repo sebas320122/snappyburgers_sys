@@ -50,14 +50,14 @@
          <span class="tooltip">Disponibilidad</span>
       </li>
       <li>
-        <a href="#">
+        <a href="{{url('proveedores')}}">
           <i class='bx bxs-truck'></i>
           <span class="opcion_texto">Proveedores</span>
         </a>
          <span class="tooltip">Proveedores</span>
       </li>
       <li>
-        <a href="#">
+        <a href="{{url('items')}}">
           <i class='bx bxs-dish'></i>
           <span class="opcion_texto">Items</span>
         </a>
@@ -69,7 +69,7 @@
           <i class='bx bxs-exit'></i>
           <span class="opcion_texto">Salir</span>
         </a>
-         <span class="tooltip">Usuairo: Sebastian Garcia Lizarraga</span>
+         <span class="tooltip">Usuario: Sebastian </span>
       </li>
 
     </ul>

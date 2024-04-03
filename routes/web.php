@@ -9,10 +9,6 @@ use App\Http\Controllers\ProveedoresController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/prueba', function () {
-    return view('tabla_disponibilidad/disponibilidad_agregar');
-});
-
 
 //Rutas para vistas (Cobrar, Ticket, Ordenes)
 Route::controller(CobroController::class)->group(function () {
@@ -41,3 +37,17 @@ Route::controller(DisponibilidadController::class)->group(function () {
     
 });
 
+//Rutas para vista Proveedores
+Route::controller(ProveedoresController::class)->group(function () {
+    Route::get('proveedores', 'showProveedores')->name('show.proveedores');
+
+    Route::get('proveedores/info/{id}', 'showInfoSolicitud')->name('show.info_solicitud');
+    Route::delete('proveedores/info/{id}', 'deleteSolicitud')->name('delete.solicitud');
+
+    Route::get('proveedores/agregar', 'showAgregarSolicitud')->name('show.agregar_solicitud');
+    Route::post('proveedores/agregar', 'storeSolicitud')->name('store.solicitud');
+
+    Route::get('proveedores/editar/{id}', 'showEditarSolicitud')->name('show.editar_solicitud');
+    Route::put('proveedores/editar/{id}', 'updateSolicitud')->name('update.solicitud');
+    
+});

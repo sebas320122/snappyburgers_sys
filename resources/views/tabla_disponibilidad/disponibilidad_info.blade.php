@@ -1,5 +1,5 @@
 @extends('base.menu')
-@section('title', 'Eliminar producto')
+@section('title', 'Informacion del producto')
 
 @section('content')
     <div class="grid">

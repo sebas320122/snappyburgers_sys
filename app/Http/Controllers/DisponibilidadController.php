@@ -11,7 +11,7 @@ class DisponibilidadController extends Controller
     // Mostrar vista Disponibilidad
     public function showDisponibilidad(){
 
-        // Obtener items del menu
+        // Obtener productos
         $productos = DB::table('disponibilidad')->get();
 
         return view('tabla_disponibilidad/disponibilidad', 
@@ -50,8 +50,10 @@ class DisponibilidadController extends Controller
 
     // Mostrar vista editar producto
     public function showEditarProducto($id){
-        //
+        
+        // Buscar producto en BD
         $producto = Disponibilidad::find($id);
+
         return view('tabla_disponibilidad/disponibilidad_editar',[
             'producto' => $producto
         ]);
@@ -60,7 +62,7 @@ class DisponibilidadController extends Controller
     // Actualizar producto en BD
     public function updateProducto(Request $request, $id){
        
-            // Encontrar producto en tabla
+            // Buscar producto en BD
             $producto = Disponibilidad::find($id);
 
             // Tomar los nuevos valores
@@ -81,10 +83,12 @@ class DisponibilidadController extends Controller
             return redirect()->back()->with('success', 'Producto modificado');  
     }
 
-    // Mostrar vista editar producto
+    // Mostrar vista Info producto
     public function showInfoProducto($id){
-        //
+        
+        // Buscar producto en BD
         $producto = Disponibilidad::find($id);
+
         return view('tabla_disponibilidad/disponibilidad_info',[
             'producto' => $producto
         ]);
@@ -93,8 +97,12 @@ class DisponibilidadController extends Controller
     // Eliminar producto de BD
     public function deleteProducto($id){ 
         try{
+            // Buscar producto en BD
             $producto = Disponibilidad::find($id);
+
+            // Eliminar producto
             $producto->delete();
+            
             return redirect()->route('show.disponibilidad')->with('success', 'Producto eliminado');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Hubo un error');

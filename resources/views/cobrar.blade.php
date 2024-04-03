@@ -41,7 +41,7 @@
                 <!--Formulario de orden-->
                 <form id="order-form" action="{{route('store.cobros')}}" method="POST">
                     @csrf
-                    <input type="number" min="0" placeholder="mesa" class="entrada-mesa" name="mesa">
+                    <input type="number" min="0" placeholder="mesa" class="entrada-mesa" name="mesa" required>
                     <div class="campo-tabla">
                         <table id="order-table">
                             <thead>

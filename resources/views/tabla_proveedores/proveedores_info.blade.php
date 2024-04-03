@@ -1,12 +1,12 @@
 @extends('base.menu')
-@section('title', 'Editar solicitud')
+@section('title', 'Informacion de la solicitud')
 
 @section('content')
     <div class="grid">
         <!--Recuadro con tabla-->
         <div class="box">
             <div class="box-header">
-                <p>Editar solicitud</p>
+                <p>Información de la solicitud</p>
             </div>
             <div class="box-content">
                 <!--Linea de botones-->
@@ -14,31 +14,28 @@
                     <a href="{{url('proveedores')}}" class="btn btn-regresar">Regresar</a>
                 </div>
                 <!--Formulario-->
-                <form action="{{route('update.solicitud',$solicitud->id)}}" method="POST">
+                <form action="{{route('delete.solicitud',$solicitud->id)}}" method="POST">
                     @csrf
-                    @method('PUT')
-                    <div class="campo-formulario">
+                    @method('DELETE')
+                   <div class="campo-formulario">
                         <label class="titulo-dato primero">Proveedor:</label>
-                        <input class="campo-dato" required type="text" value="{{$solicitud->Proveedor}}" name="proveedor">
+                        <p class="campo-dato">{{$solicitud->Proveedor}}</p>
                         <label class="titulo-dato">Producto:</label>
-                        <input class="campo-dato" required type="text" value="{{$solicitud->Producto}}" name="producto">
+                        <p class="campo-dato">{{$solicitud->Producto}}</p>
                         <label class="titulo-dato">Cantidad:</label>
-                        <input class="campo-dato" required type="number" value="{{$solicitud->Cantidad}}" min="1" name="cantidad">
+                        <p class="campo-dato">{{$solicitud->Cantidad}}</p>
                         <label class="titulo-dato">Costo:</label>
-                        <input class="campo-dato" required type="number" value="{{$solicitud->Costo}}" min="0" name="costo">
+                        <p class="campo-dato">{{$solicitud->Costo}}</p>
                         <label class="titulo-dato">Estado:</label>
-                        <select class="campo-dato" name="estado">
-                            <option value="En curso">En curso</option>
-                            <option value="Cancelada">Cancelada</option>
-                            <option value="Entregada">Entregada</option>
-                        </select>
+                        <p class="campo-dato">{{$solicitud->Estado}}</p>
                         <label class="titulo-dato">Fecha estimada:</label>
-                        <input class="campo-dato" required type="date" value="{{$solicitud->Fecha_estimada}}" name="fecha_estimada">
+                        <p class="campo-dato">{{$solicitud->Fecha_estimada}}</p>
                         <label class="titulo-dato">Fecha de entrega:</label>
-                        <input class="campo-dato" required type="date" value="{{$solicitud->Fecha_entrega}}" name="fecha_entrega">
-                    </div>
-                    <div class="opciones-linea inferior">
-                        <input type="submit" value="Editar" class="btn btn-editar">
+                        <p class="campo-dato">{{$solicitud->Fecha_entrega}}</p>
+                   </div> 
+                   <div class="opciones-linea inferior">
+                        <input type="submit" value="Eliminar" class="btn btn-eliminar">
+                        <a href="{{route('show.editar_solicitud',$solicitud->id)}}" class="btn btn-editar">Editar</a>
                     </div>
                 </form>
             </div>
@@ -55,7 +52,7 @@
                 </div>
             @endif
     </div>
-    <!--Agregar estilo-->
+    <!--Agregar estilo--> 
     @push('styles')
         <link rel="stylesheet" href="/css/tabla_editar.css">
     @endpush
