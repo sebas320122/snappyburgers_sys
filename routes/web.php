@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CobroController;
 use App\Http\Controllers\DisponibilidadController;
 use App\Http\Controllers\ProveedoresController;
+use App\Http\Controllers\ItemsController;
 
 //Ruta inicial
 Route::get('/', function () {
@@ -49,5 +50,20 @@ Route::controller(ProveedoresController::class)->group(function () {
 
     Route::get('proveedores/editar/{id}', 'showEditarSolicitud')->name('show.editar_solicitud');
     Route::put('proveedores/editar/{id}', 'updateSolicitud')->name('update.solicitud');
+    
+});
+
+//Rutas para vista Items
+Route::controller(ItemsController::class)->group(function () {
+    Route::get('items', 'showItems')->name('show.items');
+
+    Route::get('items/agregar', 'showAgregarItem')->name('show.agregar_item');
+    Route::post('items/agregar', 'storeItem')->name('store.item');
+
+    Route::get('items/info/{id}', 'showInfoItem')->name('show.info_item');
+    Route::delete('items/info/{id}', 'deleteItem')->name('delete.item');
+
+    Route::get('items/editar/{id}', 'showEditarItem')->name('show.editar_item');
+    Route::put('items/editar/{id}', 'updateItem')->name('update.item');
     
 });

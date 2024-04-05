@@ -1,12 +1,12 @@
 @extends('base.menu')
-@section('title', 'Editar item')
+@section('title', 'Informacion del item')
 
 @section('content')
     <div class="grid">
         <!--Recuadro con tabla-->
         <div class="box">
             <div class="box-header">
-                <p>Editar item</p>
+                <p>Información del item</p>
             </div>
             <div class="box-content">
                 <!--Linea de botones-->
@@ -14,21 +14,22 @@
                     <a href="{{url('items')}}" class="btn btn-regresar">Regresar</a>
                 </div>
                 <!--Formulario-->
-                <form action="{{route('update.item',$item->id)}}" method="POST">
+                <form action="{{route('delete.item',$item->id)}}" method="POST">
                     @csrf
-                    @method('PUT')
-                    <div class="campo-formulario">
+                    @method('DELETE')
+                   <div class="campo-formulario">
                         <label class="titulo-dato primero">Nombre:</label>
-                        <input class="campo-dato" required type="text" value="{{$item->Nombre}}" name="nombre">
+                        <p class="campo-dato">{{$item->Nombre}}</p>
                         <label class="titulo-dato">Precio:</label>
-                        <input class="campo-dato" required type="number" min="0" value="{{$item->Precio}}" name="precio">
+                        <p class="campo-dato">{{$item->Precio}}</p>
                         <label class="titulo-dato">Categoria:</label>
-                        <input class="campo-dato" required type="text" value="{{$item->Categoria}}" name="categoria">
+                        <p class="campo-dato">{{$item->Categoria}}</p>
                         <label class="titulo-dato">Productos:</label>
-                        <input class="campo-dato" required type="text" value="{{$item->Productos}}" name="productos">
-                    </div>
-                    <div class="opciones-linea inferior">
-                        <input type="submit" value="Editar" class="btn btn-editar">
+                        <p class="campo-dato">{{$item->Productos}}</p>
+                   </div> 
+                   <div class="opciones-linea inferior">
+                        <input type="submit" value="Eliminar" class="btn btn-eliminar">
+                        <a href="{{route('show.editar_item',$item->id)}}" class="btn btn-editar">Editar</a>
                     </div>
                 </form>
             </div>
@@ -45,7 +46,7 @@
                 </div>
             @endif
     </div>
-    <!--Agregar estilo-->
+    <!--Agregar estilo--> 
     @push('styles')
         <link rel="stylesheet" href="/css/tabla_editar.css">
     @endpush

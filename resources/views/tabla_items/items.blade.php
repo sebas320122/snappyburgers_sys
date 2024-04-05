@@ -1,5 +1,5 @@
 @extends('base.menu')
-@section('title', 'Items en venta')
+@section('title', 'Items')
 
 @section('content')
     <div class="grid">
@@ -11,77 +11,59 @@
             <div class="box-content">
                 <!--Linea de botones-->
                 <div class="opciones-linea">
-                    <a href="#" class="btn-agregar">Agregar</a>
-                    <input type="text" class="busqueda-productos" placeholder="Buscar">
+                    <a href="{{url('items/agregar')}}" class="btn-agregar">Agregar</a>
+                    <input type="text" class="busqueda-productos" placeholder="Buscar" id="filtro">
                 </div>
                 <div class="campo-tabla">
-                    <table id="order-table">
+                    <table id="filtro-table">
                         <thead>
                         <tr>
-                            <th>Item</th>
+                            <th>Nombre</th>
                             <th>Precio</th>
+                            <th>Categoria</th>
                             <th>Accion</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                        <td>Hamburguesa ch c/queso</td>
-                        <td>90</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>Papas ch</td>
-                        <td>80</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>Pizza ch c/peperoni</td>
-                        <td>100</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>Hamburguesa md c/queso</td>
-                        <td>100</td>
-                        <td>
-                            <a href="#">
-                            <button class="btn-editar">
-                                Editar
-                            </button>
-                            </a>
-                        </td>
-                        </tr>
+                            @foreach ($items as $item)
+                                <tr>
+                                    <td>{{$item->Nombre}}</td>
+                                    <td>{{$item->Precio}}</td>
+                                    <td>{{$item->Categoria}}</td>
+                                    <td>
+                                        <a href="{{route('show.info_item',$item->id)}}">
+                                            <button class="btn-editar">
+                                                Ver
+                                            </button>
+                                        </a>
+                                    </td> 
+                                </tr>
+                            @endforeach   
                         </tbody>
                     </table>   
                 </div>
-                
             </div>
         </div>
-        <div class="mensaje-alerta">
-            <p>Aqui se mostraran confirmaciones o errores al momento de ejecutar una operacion en la tabla</p>
-        </div>
+        <!--Mensaje de alerta-->
+                @if ($message = Session::get('success'))
+                    <div class="mensaje-alerta">
+                        <p>{{$message}}</p>
+                    </div>
+                @endif
+                @if ($message = Session::get('error'))
+                    <div class="mensaje-alerta">
+                        <p>{{$message}}</p>
+                    </div>
+                @endif
     </div>
     
     <!--Agregar estilo-->
     @push('styles')
         <link rel="stylesheet" href="/css/tabla.css">
+    @endpush
+    <!--Agregar script-->
+    @push('scripts')
+        <script src="/js/filtro.js"></script>
     @endpush
 
 @endsection

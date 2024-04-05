@@ -35,7 +35,7 @@
                         <label class="titulo-dato">Fecha estimada:</label>
                         <input class="campo-dato" required type="date" value="{{$solicitud->Fecha_estimada}}" name="fecha_estimada">
                         <label class="titulo-dato">Fecha de entrega:</label>
-                        <input class="campo-dato" required type="date" value="{{$solicitud->Fecha_entrega}}" name="fecha_entrega">
+                        <input class="campo-dato" type="date" value="{{$solicitud->Fecha_entrega}}" name="fecha_entrega">
                     </div>
                     <div class="opciones-linea inferior">
                         <input type="submit" value="Editar" class="btn btn-editar">
