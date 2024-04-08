@@ -59,6 +59,7 @@
     text-align: center;
     grid-column: 1 span;
   }
+  
   .opciones-linea .busqueda-productos{
     font-size: 16px;
     border: 1px solid  #D9D9D9;
@@ -73,7 +74,17 @@
     padding: 10px;
   }
   
-  
+    /*Total de tabla*/
+    .box .campo-dato{
+      width:100%;
+      border: 1px solid  #D9D9D9;
+      background-color: #D9D9D9;
+      border-radius: 6px;
+      padding: 7px 2px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
   /*recuadro tabla*/
   .box table {
     border-collapse: collapse;

@@ -5,6 +5,7 @@ use App\Http\Controllers\CobroController;
 use App\Http\Controllers\DisponibilidadController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\IngresosController;
 
 //Ruta inicial
 Route::get('/', function () {
@@ -66,4 +67,15 @@ Route::controller(ItemsController::class)->group(function () {
     Route::get('items/editar/{id}', 'showEditarItem')->name('show.editar_item');
     Route::put('items/editar/{id}', 'updateItem')->name('update.item');
     
+});
+
+//Rutas para vista Ingresos
+Route::controller(IngresosController::class)->group(function () {
+    Route::get('ingresos', 'showIngresos')->name('show.ingresos');
+
+    Route::get('ingresos/ventas', 'showVentas')->name('show.ventas');
+    Route::get('ingresos/ventas/info/{id}', 'showInfoVenta')->name('show.info_venta');
+
+    Route::get('ingresos/gastos', 'showGastos')->name('show.gastos');
+    Route::get('ingresos/gastos/info/{id}', 'showInfoGasto')->name('show.info_gasto');
 });

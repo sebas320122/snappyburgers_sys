@@ -64,6 +64,12 @@
          <span class="tooltip">Items</span>
       </li>
       <li>
+        <a href="{{url('ingresos')}}">
+          <i class='bx bxs-dollar-circle'></i>
+          <span class="opcion_texto">Ingresos</span>
+        </a>
+         <span class="tooltip">Ingresos</span>
+      </li>
       <li>
         <a href="#">
           <i class='bx bxs-exit'></i>

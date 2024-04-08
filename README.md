@@ -14,6 +14,8 @@
 ### 31/03 - 02/04
 - Se realizo las funciones de la vista proveedores
 ### 02/04 - 05/04
-- Se haran las funciones de la vista Items
-### 05/04 - en curso
-- Se haran las funciones de la vista Ganancias
+- Se realizo las funciones de la vista Items
+### 05/04 - 08/04
+- Se realizo las funciones de la vista Ingresos
+### 08/04 - en curso
+- Se haran las funciones de la vista Empleados
