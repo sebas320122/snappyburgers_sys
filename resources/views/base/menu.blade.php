@@ -71,6 +71,13 @@
          <span class="tooltip">Ingresos</span>
       </li>
       <li>
+        <a href="{{url('empleados')}}">
+          <i class='bx bxs-contact'></i>
+          <span class="opcion_texto">Empleados</span>
+        </a>
+         <span class="tooltip">Empleados</span>
+      </li>
+      <li>
         <a href="#">
           <i class='bx bxs-exit'></i>
           <span class="opcion_texto">Salir</span>

@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         // Ejecutar seeders
         $this->call([
-            ItemSeeder::class
+            ItemSeeder::class,
+            RegistrosMuestraSeeder::class,
+            EmpleadoSeeder::class
         ]);
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\DisponibilidadController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\IngresosController;
+use App\Http\Controllers\EmpleadosController;
+
 
 //Ruta inicial
 Route::get('/', function () {
@@ -78,4 +80,19 @@ Route::controller(IngresosController::class)->group(function () {
 
     Route::get('ingresos/gastos', 'showGastos')->name('show.gastos');
     Route::get('ingresos/gastos/info/{id}', 'showInfoGasto')->name('show.info_gasto');
+});
+
+//Rutas para vista Empleados
+Route::controller(EmpleadosController::class)->group(function () {
+    Route::get('empleados', 'showEmpleados')->name('show.empleados');
+
+    Route::get('empleados/agregar', 'showAgregarEmpleado')->name('show.agregar_empleado');
+    Route::post('empleados/agregar', 'storeEmpleado')->name('store.empleado');
+
+    Route::get('empleados/info/{id}', 'showInfoEmpleado')->name('show.info_empleado');
+    Route::delete('empleados/info/{id}', 'deleteEmpleado')->name('delete.empleado');
+
+    Route::get('empleados/editar/{id}', 'showEditarEmpleado')->name('show.editar_empleado');
+    Route::put('empleados/editar/{id}', 'updateEmpleado')->name('update.empleado');
+    
 });
