@@ -78,11 +78,11 @@
          <span class="tooltip">Empleados</span>
       </li>
       <li>
-        <a href="#">
+        <a href="{{url('salir')}}">
           <i class='bx bxs-exit'></i>
           <span class="opcion_texto">Salir</span>
         </a>
-         <span class="tooltip">Usuario: Sebastian </span>
+         <span class="tooltip">Usuario:{{Auth::user()->nombre}}</span>
       </li>
 
     </ul>

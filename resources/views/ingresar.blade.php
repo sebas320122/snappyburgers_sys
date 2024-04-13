@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Iniciar sesion </title>
+    <title> Ingresar </title>
     <link rel="stylesheet" href="/css/login.css">
     <link rel="icon" type="image/x-icon" href="SnappyLogo.ico">
     <!-- Iconos -->
@@ -20,6 +20,7 @@
     <div class="main-content">
         <div class="box">
             <div class="box-header">
+                <!--Seccion del logo-->
                 <div class="contenedor-logo">
                     <div class="marco-logo">
                         <img src="SnappyLogo.png" alt="cat" class="logo">
@@ -27,15 +28,31 @@
                     <div class="logo-titulo">Snappy Burgers</div>
                 </div>
             </div>
+            <!--Seccion del formulario-->
             <div class="box-content">
-                <form action="#">
-                    <input class="dato" type="text"  placeholder="Usuario" name="user">
+                <form action="{{ route('iniciar.sesion') }}" method="POST">
+                    @csrf
+                    <input class="dato" type="text"  placeholder="Correo" name="email">
                     <input class="dato segundo" type="password" placeholder="Contraseña" name="password">
                     <input class="boton" type="submit" value="Iniciar sesión">
                 </form> 
             </div>
         </div>
     </div>
+
+    <!--Seccion de alertas-->
+    @if ($message = Session::get('error'))
+        <div class="mensaje-alerta">
+            <p>{{$message}}</p>
+        </div>
+    @endif
+    @if (count($errors) > 0)
+        <div class="mensaje-alerta">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
   
   
 </body>

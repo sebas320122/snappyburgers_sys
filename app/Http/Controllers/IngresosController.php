@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Ordenes;
 use App\Models\Proveedores;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class IngresosController extends Controller
 {
@@ -15,7 +17,7 @@ class IngresosController extends Controller
         // Obtener total de ventas del dia actual
         $ventasHoy = DB::table('ordenes')
         ->select(DB::raw('SUM(Total) as sumatoria'))
-        ->where('Estado','Confirmar')
+        ->where('Estado','Preparado')
         ->where(DB::raw('DATE(created_at)'), '=', DB::raw('CURDATE()'))
         ->first();
 
@@ -58,9 +60,14 @@ class IngresosController extends Controller
     // Mostrar vista Ventas
     public function showVentas(){
 
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaIngresos',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para ver las ventas');
+        }
+
         // Obtener ventas del dia actual
         $ventasHoy = DB::table('ordenes')
-        ->where('Estado','Confirmar')
+        ->where('Estado','Preparado')
         ->where(DB::raw('DATE(created_at)'), '=', DB::raw('CURDATE()'))
         ->latest()
         ->get();
@@ -72,7 +79,7 @@ class IngresosController extends Controller
 
         // Obtener ventas de los pasados 7 dias
         $ventasPasadas = DB::table('ordenes')
-        ->where('Estado','Confirmar')
+        ->where('Estado','Preparado')
         ->where(DB::raw('DATE(created_at)'), '>=', DB::raw('CURDATE() - INTERVAL 7 DAY'))
         ->where(DB::raw('DATE(created_at)'), '<', DB::raw('CURDATE()'))
         ->latest()
@@ -94,6 +101,11 @@ class IngresosController extends Controller
     // Mostrar vista Info de venta
     public function showInfoVenta($id){
         
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaIngresos',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para ver las ventas');
+        }
+        
         // Buscar venta en BD
         $venta = Ordenes::find($id);
 
@@ -104,6 +116,11 @@ class IngresosController extends Controller
 
     // Mostrar vista Gastos
     public function showGastos(){
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaIngresos',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para ver los gastos');
+        }
 
         // Obtener gastos del dia actual
         $gastosHoy = DB::table('proveedores')
@@ -140,6 +157,11 @@ class IngresosController extends Controller
 
     // Mostrar vista Info gasto
     public function showInfoGasto($id){
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaIngresos',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para ver los gastos');
+        }
         
         // Buscar gastos en BD
         $gasto = Proveedores::find($id);

@@ -12,6 +12,7 @@ class ItemSeeder extends Seeder
     public function run(): void
     {
         // items del menu
+        /*
         DB::table('items')->truncate();
         DB::table('items')->insert([
             [
@@ -130,6 +131,6 @@ class ItemSeeder extends Seeder
             ]
             
         ]);
-
+        */
     }
 }

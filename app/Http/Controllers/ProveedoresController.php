@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Proveedores;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ProveedoresController extends Controller
 {
@@ -27,6 +29,12 @@ class ProveedoresController extends Controller
 
     // Guardar solicitud en BD
     public function storeSolicitud(Request $request){
+
+         // Comprobar que el usuario cuenta con autorizacion
+         if (! Gate::allows('tablaProveedores',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para agregar solicitudes');
+        }
+
         try{
             // Obtener los datos del formulario
             $proveedor = $request->input('proveedor');
@@ -64,7 +72,13 @@ class ProveedoresController extends Controller
 
      // Actualizar solicitud en BD
     public function updateSolicitud(Request $request, $id){
-       
+        
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaProveedores',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para actualizar solicitudes');
+        }
+
+        try{
             // Encontrar solicitud en tabla
             $solicitud = Proveedores::find($id);
 
@@ -91,6 +105,10 @@ class ProveedoresController extends Controller
             $solicitud->save();
 
             return redirect()->back()->with('success', 'Solicitud modificada');  
+        } catch(\Exception $e){
+            return redirect()->back()->with('error', 'Hubo un error');
+        }
+            
     }
 
     // Mostrar vista Info producto
@@ -106,6 +124,12 @@ class ProveedoresController extends Controller
     
     // Eliminar solicitud de BD
     public function deleteSolicitud($id){ 
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaProveedores',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para eliminar solicitudes');
+        }
+
         try{
             // Buscar solicitud en BD
             $solicitud = Proveedores::find($id);

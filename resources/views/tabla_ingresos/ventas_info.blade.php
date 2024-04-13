@@ -25,8 +25,12 @@
                     <p class="campo-dato">{{$venta->Estado}}</p>
                     <label class="titulo-dato">Fecha de registro:</label>
                     <p class="campo-dato">{{$venta->created_at}}</p>
+                    <label class="titulo-dato">Empleado que creo la orden:</label>
+                    <p class="campo-dato">{{$venta->Empleado_creo}}</p>
                     <label class="titulo-dato">Ultima actualizacion:</label>
                     <p class="campo-dato">{{$venta->updated_at}}</p>
+                    <label class="titulo-dato">Empleado que actualizo la orden:</label>
+                    <p class="campo-dato">{{$venta->Empleado_actualizo}}</p>
                 </div> 
             </div>
         </div>

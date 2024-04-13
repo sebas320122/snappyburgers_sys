@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Items;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ItemsController extends Controller
 {
@@ -25,6 +27,12 @@ class ItemsController extends Controller
 
     // Guardar item en BD
     public function storeItem(Request $request){
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaItems',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para agregar items');
+        }
+
         try{
             // Obtener los datos del formulario
             $nombre = $request->input('nombre');
@@ -56,6 +64,11 @@ class ItemsController extends Controller
 
      // Actualizar item en BD
     public function updateItem(Request $request, $id){
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaItems',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para editar items');
+        }
 
         try{
             // Encontrar item en tabla
@@ -96,6 +109,12 @@ class ItemsController extends Controller
     
     // Eliminar item de BD
     public function deleteItem($id){ 
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaItems',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para eliminar items');
+        }
+
         try{
             // Buscar item en BD
             $item = Items::find($id);

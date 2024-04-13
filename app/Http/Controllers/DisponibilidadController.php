@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Disponibilidad;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DisponibilidadController extends Controller
 {
@@ -25,6 +27,12 @@ class DisponibilidadController extends Controller
 
     // Guardar producto en BD
     public function storeProducto(Request $request){
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaDisponibilidad',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para agregar productos');
+        }
+
         try{
             // Obtener los datos del formulario
             $producto = $request->input('producto');
@@ -61,7 +69,13 @@ class DisponibilidadController extends Controller
 
     // Actualizar producto en BD
     public function updateProducto(Request $request, $id){
-       
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaDisponibilidad',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para editar productos');
+        }
+
+        try{
             // Buscar producto en BD
             $producto = Disponibilidad::find($id);
 
@@ -80,7 +94,12 @@ class DisponibilidadController extends Controller
             // Realizar actualizacion
             $producto->save();
 
-            return redirect()->back()->with('success', 'Producto modificado');  
+            return redirect()->back()->with('success', 'Producto modificado');
+
+        } catch(\Exception $e){
+            return redirect()->back()->with('error', 'Hubo un error');
+        }
+              
     }
 
     // Mostrar vista Info producto
@@ -96,6 +115,12 @@ class DisponibilidadController extends Controller
     
     // Eliminar producto de BD
     public function deleteProducto($id){ 
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaDisponibilidad',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para eliminar productos');
+        }
+
         try{
             // Buscar producto en BD
             $producto = Disponibilidad::find($id);

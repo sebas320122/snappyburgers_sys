@@ -22,7 +22,7 @@ class EmpleadoSeeder extends Seeder
                 "nombre"=> 'Gerente local',
                 "email"=> 'snappy@gmail.com',
                 "password"=> Hash::make('snappy'),
-                "rol"=> 'Admin',
+                "rol"=> 'Gerente',
                 "created_at"=> now()
             ]
         ]);

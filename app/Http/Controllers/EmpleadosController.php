@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class EmpleadosController extends Controller
 {
@@ -25,6 +27,12 @@ class EmpleadosController extends Controller
 
     // Guardar empleado en BD
     public function storeEmpleado(Request $request){
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaEmpleados',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para agregar empleados');
+        }
+
         try{
             // Obtener los datos del formulario
             $nombre = $request->input('nombre');
@@ -56,6 +64,11 @@ class EmpleadosController extends Controller
 
      // Actualizar empleado en BD
     public function updateEmpleado(Request $request, $id){
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaEmpleados',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para editar empleados');
+        }
 
         try{
             // Encontrar empleado en tabla
@@ -96,6 +109,12 @@ class EmpleadosController extends Controller
     
     // Eliminar empleado de BD
     public function deleteEmpleado($id){ 
+
+        // Comprobar que el usuario cuenta con autorizacion
+        if (! Gate::allows('tablaEmpleados',Auth::user())) {
+            return redirect()->back()->with('error','No cuentas con permisos para eliminar empleados');
+        }
+
         try{
             // Buscar empleado en BD
             $empleado = User::find($id);

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->mediumInteger('Total');
             $table->string('Mesa');
             $table->string('Estado');
+            $table->string('Empleado_creo');
+            $table->string('Empleado_actualizo')->nullable();
             $table->timestamps();
         });
     }

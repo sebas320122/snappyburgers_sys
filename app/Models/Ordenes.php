@@ -17,7 +17,9 @@ class Ordenes extends Model
     [
     'Total',
     'Mesa',
-    'Estado'
+    'Estado',
+    'Empleado_creo',
+    'Empleado_actualizo'
     ];
 
     public function cobros()

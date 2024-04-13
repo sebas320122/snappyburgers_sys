@@ -7,92 +7,102 @@ use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\EmpleadosController;
-
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 
 //Ruta inicial
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [LoginController::class, 'showIngresar']);
+
+//Rutas del login
+Route::controller(LoginController::class)->group(function () {
+    Route::get('ingresar', 'showIngresar')->name('show.ingresar');
+    Route::post('ingresar', 'iniciarSesion')->name('iniciar.sesion');
+    Route::get('salir', 'cerrarSesion')->name('cerrar.sesion');
 });
 
-//Rutas para vistas (Cobrar, Ticket, Ordenes)
-Route::controller(CobroController::class)->group(function () {
-    Route::get('cobrar', 'showCobrar')->name('show.cobrar');
-    Route::post('cobrar', 'storeCobros')->name('store.cobros');
-
-    Route::get('ticket/{order_id}', 'showTicket')->name('show.ticket');
-    Route::post('ticket/{order_id}', 'updateOrden')->name('update.orden');
-
-    Route::get('ordenes', 'showOrdenes')->name('show.ordenes');
-    Route::post('ordenes', 'updateOrdenconf')->name('update.ordenconf');
-});
-
-//Rutas para vista Disponibilidad
-Route::controller(DisponibilidadController::class)->group(function () {
-    Route::get('disponibilidad', 'showDisponibilidad')->name('show.disponibilidad');
-
-    Route::get('disponibilidad/info/{id}', 'showInfoProducto')->name('show.info_producto');
-    Route::delete('disponibilidad/info/{id}', 'deleteProducto')->name('delete.producto');
+//Rutas accesibles solo para usuarios logeados
+Route::middleware(['auth'])->group(function (){
     
-    Route::get('disponibilidad/agregar', 'showAgregarProducto')->name('show.agregar_producto');
-    Route::post('disponibilidad/agregar', 'storeProducto')->name('store.producto');
+    //Rutas para vistas (Cobrar, Ticket, Ordenes)
+    Route::controller(CobroController::class)->group(function () {
+        Route::get('cobrar', 'showCobrar')->name('show.cobrar');
+        Route::post('cobrar', 'storeCobros')->name('store.cobros');
 
-    Route::get('disponibilidad/editar/{id}', 'showEditarProducto')->name('show.editar_producto');
-    Route::put('configuracion/editar/{id}', 'updateProducto')->name('update.producto');
-    
-});
+        Route::get('ticket/{order_id}', 'showTicket')->name('show.ticket');
+        Route::post('ticket/{order_id}', 'updateOrden')->name('update.orden');
 
-//Rutas para vista Proveedores
-Route::controller(ProveedoresController::class)->group(function () {
-    Route::get('proveedores', 'showProveedores')->name('show.proveedores');
+        Route::get('ordenes', 'showOrdenes')->name('show.ordenes');
+        Route::post('ordenes', 'updateOrdenconf')->name('update.ordenconf');
+    });
 
-    Route::get('proveedores/info/{id}', 'showInfoSolicitud')->name('show.info_solicitud');
-    Route::delete('proveedores/info/{id}', 'deleteSolicitud')->name('delete.solicitud');
+    //Rutas para vista Disponibilidad
+    Route::controller(DisponibilidadController::class)->group(function () {
+        Route::get('disponibilidad', 'showDisponibilidad')->name('show.disponibilidad');
 
-    Route::get('proveedores/agregar', 'showAgregarSolicitud')->name('show.agregar_solicitud');
-    Route::post('proveedores/agregar', 'storeSolicitud')->name('store.solicitud');
+        Route::get('disponibilidad/info/{id}', 'showInfoProducto')->name('show.info_producto');
+        Route::delete('disponibilidad/info/{id}', 'deleteProducto')->name('delete.producto');
+        
+        Route::get('disponibilidad/agregar', 'showAgregarProducto')->name('show.agregar_producto');
+        Route::post('disponibilidad/agregar', 'storeProducto')->name('store.producto');
 
-    Route::get('proveedores/editar/{id}', 'showEditarSolicitud')->name('show.editar_solicitud');
-    Route::put('proveedores/editar/{id}', 'updateSolicitud')->name('update.solicitud');
-    
-});
+        Route::get('disponibilidad/editar/{id}', 'showEditarProducto')->name('show.editar_producto');
+        Route::put('configuracion/editar/{id}', 'updateProducto')->name('update.producto');
+        
+    });
 
-//Rutas para vista Items
-Route::controller(ItemsController::class)->group(function () {
-    Route::get('items', 'showItems')->name('show.items');
+    //Rutas para vista Proveedores
+    Route::controller(ProveedoresController::class)->group(function () {
+        Route::get('proveedores', 'showProveedores')->name('show.proveedores');
 
-    Route::get('items/agregar', 'showAgregarItem')->name('show.agregar_item');
-    Route::post('items/agregar', 'storeItem')->name('store.item');
+        Route::get('proveedores/info/{id}', 'showInfoSolicitud')->name('show.info_solicitud');
+        Route::delete('proveedores/info/{id}', 'deleteSolicitud')->name('delete.solicitud');
 
-    Route::get('items/info/{id}', 'showInfoItem')->name('show.info_item');
-    Route::delete('items/info/{id}', 'deleteItem')->name('delete.item');
+        Route::get('proveedores/agregar', 'showAgregarSolicitud')->name('show.agregar_solicitud');
+        Route::post('proveedores/agregar', 'storeSolicitud')->name('store.solicitud');
 
-    Route::get('items/editar/{id}', 'showEditarItem')->name('show.editar_item');
-    Route::put('items/editar/{id}', 'updateItem')->name('update.item');
-    
-});
+        Route::get('proveedores/editar/{id}', 'showEditarSolicitud')->name('show.editar_solicitud');
+        Route::put('proveedores/editar/{id}', 'updateSolicitud')->name('update.solicitud');
+        
+    });
 
-//Rutas para vista Ingresos
-Route::controller(IngresosController::class)->group(function () {
-    Route::get('ingresos', 'showIngresos')->name('show.ingresos');
+    //Rutas para vista Items
+    Route::controller(ItemsController::class)->group(function () {
+        Route::get('items', 'showItems')->name('show.items');
 
-    Route::get('ingresos/ventas', 'showVentas')->name('show.ventas');
-    Route::get('ingresos/ventas/info/{id}', 'showInfoVenta')->name('show.info_venta');
+        Route::get('items/agregar', 'showAgregarItem')->name('show.agregar_item');
+        Route::post('items/agregar', 'storeItem')->name('store.item');
 
-    Route::get('ingresos/gastos', 'showGastos')->name('show.gastos');
-    Route::get('ingresos/gastos/info/{id}', 'showInfoGasto')->name('show.info_gasto');
-});
+        Route::get('items/info/{id}', 'showInfoItem')->name('show.info_item');
+        Route::delete('items/info/{id}', 'deleteItem')->name('delete.item');
 
-//Rutas para vista Empleados
-Route::controller(EmpleadosController::class)->group(function () {
-    Route::get('empleados', 'showEmpleados')->name('show.empleados');
+        Route::get('items/editar/{id}', 'showEditarItem')->name('show.editar_item');
+        Route::put('items/editar/{id}', 'updateItem')->name('update.item');
+        
+    });
 
-    Route::get('empleados/agregar', 'showAgregarEmpleado')->name('show.agregar_empleado');
-    Route::post('empleados/agregar', 'storeEmpleado')->name('store.empleado');
+    //Rutas para vista Ingresos
+    Route::controller(IngresosController::class)->group(function () {
+        Route::get('ingresos', 'showIngresos')->name('show.ingresos');
 
-    Route::get('empleados/info/{id}', 'showInfoEmpleado')->name('show.info_empleado');
-    Route::delete('empleados/info/{id}', 'deleteEmpleado')->name('delete.empleado');
+        Route::get('ingresos/ventas', 'showVentas')->name('show.ventas');
+        Route::get('ingresos/ventas/info/{id}', 'showInfoVenta')->name('show.info_venta');
 
-    Route::get('empleados/editar/{id}', 'showEditarEmpleado')->name('show.editar_empleado');
-    Route::put('empleados/editar/{id}', 'updateEmpleado')->name('update.empleado');
-    
+        Route::get('ingresos/gastos', 'showGastos')->name('show.gastos');
+        Route::get('ingresos/gastos/info/{id}', 'showInfoGasto')->name('show.info_gasto');
+    });
+
+    //Rutas para vista Empleados
+    Route::controller(EmpleadosController::class)->group(function () {
+        Route::get('empleados', 'showEmpleados')->name('show.empleados');
+
+        Route::get('empleados/agregar', 'showAgregarEmpleado')->name('show.agregar_empleado');
+        Route::post('empleados/agregar', 'storeEmpleado')->name('store.empleado');
+
+        Route::get('empleados/info/{id}', 'showInfoEmpleado')->name('show.info_empleado');
+        Route::delete('empleados/info/{id}', 'deleteEmpleado')->name('delete.empleado');
+
+        Route::get('empleados/editar/{id}', 'showEditarEmpleado')->name('show.editar_empleado');
+        Route::put('empleados/editar/{id}', 'updateEmpleado')->name('update.empleado');
+        
+    });
 });

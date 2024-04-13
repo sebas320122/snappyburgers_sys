@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cobros;
 use App\Models\Ordenes;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class CobroController extends Controller
 {
@@ -36,6 +36,7 @@ class CobroController extends Controller
         'Total' => 0, 
         'Mesa' => $request->input('mesa'),
         'Estado' => "Anotado", 
+        'Empleado_creo' => Auth::user()->nombre,
         ]);
 
         // Obtener los datos del formulario
@@ -86,7 +87,10 @@ class CobroController extends Controller
 
         // Actualizar el estado en la tabla de cobros y ordenes
         Cobros::where('Orden_id', $order_id)->update(['Estado' => $nuevoEstado]);
-        Ordenes::where('id', $order_id)->update(['Estado' => $nuevoEstado]);
+        Ordenes::where('id', $order_id)->update([
+            'Estado' => $nuevoEstado,
+            'Empleado_actualizo' => Auth::user()->nombre
+        ]);
 
         return redirect()->route('show.cobrar');
     }
@@ -111,7 +115,9 @@ class CobroController extends Controller
 
         // Actualizar el estado en la tabla de cobros y ordenes
         Cobros::where('Orden_id', $order_id )->update(['Estado' => $nuevoEstado]);
-        Ordenes::where('id', $order_id)->update(['Estado' => $nuevoEstado]);
+        Ordenes::where('id', $order_id)->update([
+            'Estado' => $nuevoEstado
+        ]);
 
         return redirect()->back();
     }
